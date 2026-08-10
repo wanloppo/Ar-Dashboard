@@ -1,5 +1,6 @@
 export default defineNuxtConfig({
   devtools: { enabled: true },
+  devServer: { port: Number(process.env.PORT || 3400) },
   modules: ['@nuxtjs/tailwindcss'],
   css: ['~/assets/css/main.css'],
   typescript: { strict: true, typeCheck: true },
