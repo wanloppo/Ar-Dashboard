@@ -12,6 +12,12 @@ Nuxt 3 dashboard for read-only CreditInvoice and BankInvoice reporting on Micros
 
 Keep `SESSION_COOKIE_SECURE=false` for local HTTP. Set it to `true` when the deployed app is served over HTTPS.
 
+If the container reports `NUXT_AUTH_SECRET must be configured in production`, add a long random value to `.env`, for example:
+
+```bash
+node -e "console.log(require('crypto').randomBytes(48).toString('base64url'))"
+```
+
 The app never writes to `CreditInvoice`, `CreditInvoice_ali`, or `vBankInvoice`. Application writes are limited to `UserInfo`, `ScreenInfo`, and `AccessScreenInfo`.
 
 ## Verification
