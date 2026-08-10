@@ -36,7 +36,7 @@ export default defineEventHandler(async (event) => {
       ${creditInvoiceCte}
       SELECT COUNT_BIG(*) total_count
       FROM credit_invoice ci
-      LEFT JOIN dbo.vBankInvoice bi ON ci.ih_bank=bi.invoice_type AND ci.ih_invdate=bi.invoice_date
+      LEFT JOIN dbo.vBankInvoice bi ON ci.ih_bank=bi.invoice_type AND ci.ih_invdate=bi.invoice_date AND ci.ih_date=bi.doc_date
       WHERE ${where};
 
       ${creditInvoiceCte}
@@ -45,7 +45,7 @@ export default defineEventHandler(async (event) => {
         bi.invoice_date,bi.merchant_id,bi.invoice_no,
         bi.total bank_total,bi.com bank_com,bi.vat bank_vat,bi.net bank_net
       FROM credit_invoice ci
-      LEFT JOIN dbo.vBankInvoice bi ON ci.ih_bank=bi.invoice_type AND ci.ih_invdate=bi.invoice_date
+      LEFT JOIN dbo.vBankInvoice bi ON ci.ih_bank=bi.invoice_type AND ci.ih_invdate=bi.invoice_date AND ci.ih_date=bi.doc_date
       WHERE ${where}
       ORDER BY ${sort} ${order}, ci.ih_docno DESC
       OFFSET @offset ROWS FETCH NEXT @pageSize ROWS ONLY;

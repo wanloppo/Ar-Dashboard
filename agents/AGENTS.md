@@ -20,7 +20,8 @@
 
 - Treat `dbo.CreditInvoice`, `dbo.CreditInvoice_ali`, and `dbo.vBankInvoice` as read-only.
 - `CreditInvoice_ali` records are exposed as bank `KBAL`.
-- Join CreditInvoice to BankInvoice with `ih_bank = invoice_type` and `ih_invdate = invoice_date`.
+- Join CreditInvoice to BankInvoice with `ih_bank = invoice_type`, `ih_invdate = invoice_date`, and `ih_date = doc_date`.
+- For `CreditInvoice` rows, use `ih_date + 1 day` as `ih_invdate` when `ih_bank = 'SCB'`.
 - Date-range filtering for CreditInvoice uses `ih_invdate`, not `ih_date`.
 - Date-range filtering for BankInvoice uses `invoice_date`.
 - Use an inclusive end date with `< DATEADD(day, 1, @to)`.

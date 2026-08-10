@@ -3,7 +3,9 @@ import sql from 'mssql'
 export const creditInvoiceCte = `
 WITH credit_invoice AS (
   SELECT ih_docno, ih_refbrcode, ih_refdocno, ih_date, ih_vat, ih_com, ih_total,
-    ih_luser, ih_status, ih_invdate, ih_bank
+    ih_luser, ih_status,
+    CASE WHEN ih_bank = 'SCB' THEN DATEADD(day, 1, ih_date) ELSE ih_invdate END AS ih_invdate,
+    ih_bank
   FROM dbo.CreditInvoice
   UNION
   SELECT ih_docno, ih_refbrcode, ih_refdocno, ih_date, ih_vat, ih_com, ih_total,
