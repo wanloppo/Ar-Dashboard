@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root { color-scheme: light; }
+body { @apply bg-paper text-ink antialiased; font-family: 'DM Sans', 'Noto Sans Thai', sans-serif; }
+button, input, select, textarea { font: inherit; }
+* { scrollbar-width: thin; scrollbar-color: #c8d5d2 transparent; }
+@layer components {
+  .panel { @apply rounded-2xl border border-mist bg-white shadow-soft; }
+  .field { @apply w-full rounded-xl border border-mist bg-white px-3.5 py-2.5 text-sm text-ink outline-none transition placeholder:text-slate-400 focus:border-teal focus:ring-4 focus:ring-teal/10; }
+  .label { @apply mb-1.5 block text-xs font-semibold uppercase tracking-wide text-slate-500; }
+  .btn-primary { @apply inline-flex items-center justify-center gap-2 rounded-xl bg-ink px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-teal disabled:cursor-not-allowed disabled:opacity-50; }
+  .btn-secondary { @apply inline-flex items-center justify-center gap-2 rounded-xl border border-mist bg-white px-4 py-2.5 text-sm font-semibold text-ink transition hover:border-teal hover:text-teal disabled:cursor-not-allowed disabled:opacity-50; }
+}
